@@ -20,7 +20,7 @@
           </div>
         </div>
       </div>
-      <div class="container-fluid p-10">
+      <div class="container-fluid p-10" style="min-height: 70vh">
         <div class="row clearfix">
           <div class="col-lg-12">
             <div class="card">
