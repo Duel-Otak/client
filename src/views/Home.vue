@@ -34,7 +34,7 @@
                       <img src="@/assets/logo.png" alt="avatar" />
                       <div class="about">
                         <div class="name">Aiden Chavez</div>
-                        <div class="status me"> <i class="zmdi zmdi-circle"></i> online </div>
+                        <div class="status me"> <i class="zmdi zmdi-circle"></i> Score: 90 </div>
                       </div>
                     </a>
                   </li>
@@ -43,25 +43,34 @@
                       <img src="@/assets/logo.png" alt="avatar" />
                       <div class="about">
                         <div class="name">Aiden Chavez</div>
-                        <div class="status me"> <i class="zmdi zmdi-circle"></i> online </div>
+                        <div class="status me"> <i class="zmdi zmdi-circle"></i> Score: 60 </div>
                       </div>
                     </a>
                   </li>
                 </ul>
               </div>
               <div class="chat_window body">
-                <div class="chat-header">
-                  <div class="user">
-                    <img src="@/assets/logo.png" alt="avatar" />
-                    <div class="chat-about">
-                      <div class="chat-with">Nama Room</div>
-                      <div class="chat-num-messages">2 Player</div>
+                <div class="d-flex">
+                  <div class="p-2">
+                    <div class="chat-header">
+                      <div class="d-flex justify-content-between mr-auto">
+                        <div class="user text-left">
+                          <img src="@/assets/logo.png" alt="avatar" />
+                          <div class="chat-about">
+                            <div class="chat-with">Nama Room</div>
+                            <div class="chat-num-messages">2 Player</div>
+                          </div>
+                        </div>
+                      </div>
                     </div>
                   </div>
-                  <!-- <div class="setting">
-                    <a href="javascript:void(0);" class="btn btn-sm btn-warning"><i class="zmdi zmdi-camera"></i></a>
-                    <a href="javascript:void(0);" class="btn btn-sm btn-info"><i class="zmdi zmdi-file-text"></i></a>
-                  </div> -->
+                  <div class="ml-auto p-2">
+                  <div class="bg-green flex-fill bd-highlight float-right text-center" style="width: 120px; height: 45px">
+                    <h5 class="p-2 m-t-7">Score : 83</h5>
+                  </div>
+                  </div>
+                </div>
+                <div class="chat-header">
                   <a href="javascript:void(0);" class="list_btn btn btn-info btn-round float-md-right"><i
                       class="zmdi zmdi-comments"></i></a>
                 </div>
@@ -84,18 +93,10 @@
                       <hr>
                       <div class="row">
                         <div class="col-6">
-                          <button class="btn btn-primary btn-lg" style="width:100%;">Berteduh Satu Payung</button>
+                          <button class="btn btn-success btn-lg" style="width:100%;">Betul</button>
                         </div>
                         <div class="col-6">
-                          <button class="btn btn-primary btn-lg" style="width:100%;">Tinggal jalan saja</button>
-                        </div>
-                      </div>
-                      <div class="row">
-                        <div class="col-6">
-                          <button class="btn btn-primary btn-lg" style="width:100%;">Rebutan Payung</button>
-                        </div>
-                        <div class="col-6">
-                          <button class="btn btn-primary btn-lg" style="width:100%;">Aku bingung mau jawab apa</button>
+                          <button class="btn btn-danger btn-lg" style="width:100%;">Salah</button>
                         </div>
                       </div>
                     </div>
