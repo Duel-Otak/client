@@ -24,14 +24,50 @@
         <div class="row clearfix">
           <div class="col-lg-12">
             <div class="card">
-              <!-- <div class="header">
-                <h2><strong>Stater</strong> page</h2>
-              </div> -->
-              <div class="body">
-                <h5>Stater page</h5>
-                <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the
-                  industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and
-                  scrambled it to make a type specimen book.</p>
+              <div class="chat_list">
+                <div class="input-group">
+                 <strong>List Player</strong>
+                </div>
+                <ul class="user_list list-unstyled mb-0 mt-3">
+                  <li class="active">
+                    <a href="javascript:void(0);">
+                      <img src="@/assets/logo.png" alt="avatar" />
+                      <div class="about">
+                        <div class="name">Aiden Chavez</div>
+                        <div class="status me"> <i class="zmdi zmdi-circle"></i> online </div>
+                      </div>
+                    </a>
+                  </li>
+                  <li class="active">
+                    <a href="javascript:void(0);">
+                      <img src="@/assets/logo.png" alt="avatar" />
+                      <div class="about">
+                        <div class="name">Aiden Chavez</div>
+                        <div class="status me"> <i class="zmdi zmdi-circle"></i> online </div>
+                      </div>
+                    </a>
+                  </li>
+                </ul>
+              </div>
+              <div class="chat_window body">
+                <div class="chat-header">
+                  <div class="user">
+                    <img src="@/assets/logo.png" alt="avatar" />
+                    <div class="chat-about">
+                      <div class="chat-with">Nama Room</div>
+                      <div class="chat-num-messages">2 Player</div>
+                    </div>
+                  </div>
+                  <!-- <div class="setting">
+                    <a href="javascript:void(0);" class="btn btn-sm btn-warning"><i class="zmdi zmdi-camera"></i></a>
+                    <a href="javascript:void(0);" class="btn btn-sm btn-info"><i class="zmdi zmdi-file-text"></i></a>
+                  </div> -->
+                  <a href="javascript:void(0);" class="list_btn btn btn-info btn-round float-md-right"><i
+                      class="zmdi zmdi-comments"></i></a>
+                </div>
+                <hr>
+                <ul class="chat-history">
+                </ul>
               </div>
             </div>
           </div>
