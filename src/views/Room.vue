@@ -1,23 +1,36 @@
 <template>
-  <div class="container add-room">
-      <div class="fetch-room">
-          <table>
-              <thead>
-                  <tr>
-                      <th>No</th>
-                      <th>List Room</th>
-                  </tr>
-              </thead>
-              <tbody>
-                  <tr v-for="(room, index) in rooms" :key="room.id">
-                      <td>{{ index + 1 }}</td>
-                      <td>{{ room.name }}</td>
-                  </tr>
-              </tbody>
-          </table>
-      </div>
+  <div class="container add-room mt-5">
       <div class="button">
         <button @click="createRoom" class="btn btn-primary">Make a new one</button>
+      </div>
+      <div class="row">
+        <div class="col-sm-4">
+            <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">Room 1</h5>
+                <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+                <a href="#" class="btn btn-primary">Join</a>
+            </div>
+            </div>
+        </div>
+        <div class="col-sm-4">
+            <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">Room 2</h5>
+                <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+                <a href="#" class="btn btn-primary">Join</a>
+            </div>
+            </div>
+        </div>
+        <div class="col-sm-4">
+            <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">Room 3</h5>
+                <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+                <a href="#" class="btn btn-primary">Join</a>
+            </div>
+            </div>
+        </div>
       </div>
   </div>
 </template>

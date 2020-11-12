@@ -1,5 +1,5 @@
 <template>
-  <div class="container create-room">
+  <div class="container create-room mt-5">
       <form @click.prevent="addRoom">
         <div class="form-group">
             <label for="roomName">Room Name</label>
