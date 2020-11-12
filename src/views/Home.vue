@@ -20,7 +20,7 @@
           </div>
         </div>
       </div>
-      <div class="container-fluid">
+      <div class="container-fluid p-10">
         <div class="row clearfix">
           <div class="col-lg-12">
             <div class="card">
@@ -66,8 +66,41 @@
                       class="zmdi zmdi-comments"></i></a>
                 </div>
                 <hr>
-                <ul class="chat-history">
-                </ul>
+                <div class="col-lg-12 col-md-12">
+                  <div class="progress m-b-5">
+                      <div class="progress-bar progress-bar-danger progress-bar-striped" role="progressbar" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100" style="width: 80%"> <span class="sr-only">80% Complete (danger)</span> </div>
+                  </div>
+                  <div class="card mcard_3">
+                    <div class="header l-cyan">
+                      <h4 class="mt-4 mb-1">
+                        Cuaca sedang mendung. Ada 5 orang tapi hanya ada 1 payung. Bagaimana caranya agar mereka semua tidak kehujanan?
+                      </h4>
+                    </div>
+                    <div class="body">
+                      <!-- <div class="member-img">
+                        <a href="profile.html"><img src="@/assets/bg-timer.jpg" width="100px" height="100px" class="rounded-circle img-raised"
+                            alt="profile-image"></a>
+                      </div> -->
+                      <hr>
+                      <div class="row">
+                        <div class="col-6">
+                          <button class="btn btn-primary btn-lg" style="width:100%;">Berteduh Satu Payung</button>
+                        </div>
+                        <div class="col-6">
+                          <button class="btn btn-primary btn-lg" style="width:100%;">Tinggal jalan saja</button>
+                        </div>
+                      </div>
+                      <div class="row">
+                        <div class="col-6">
+                          <button class="btn btn-primary btn-lg" style="width:100%;">Rebutan Payung</button>
+                        </div>
+                        <div class="col-6">
+                          <button class="btn btn-primary btn-lg" style="width:100%;">Aku bingung mau jawab apa</button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
