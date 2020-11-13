@@ -15,7 +15,6 @@ Vue.use(new VueSocketIO({
   }
 }))
 
-
 new Vue({
   router,
   store,

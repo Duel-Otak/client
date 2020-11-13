@@ -28,7 +28,7 @@
 
 <script>
 export default {
-  name: 'Login',
+  name: 'UserLogin',
   data () {
     return {
       username: ''
@@ -37,10 +37,10 @@ export default {
   methods: {
     login () {
       localStorage.setItem('username', this.username)
+      this.$socket.emit('userLogin', this.username)
       this.$router.push('/')
     }
   }
-
 }
 </script>
 
