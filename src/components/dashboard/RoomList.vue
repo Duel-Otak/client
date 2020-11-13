@@ -92,9 +92,7 @@ export default {
       this.$socket.emit('createRoom', hostname)
     },
 
-    fetchRooms () {
-      // this.$socket.emit('userLogin', this.username)
-    },
+    fetchRooms () {},
 
     roomImage (name) {
       return 'https://avatars.dicebear.com/api/bottts/' + name + '.svg?mood[]=happy'

@@ -5,9 +5,11 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
-    rooms: []
+    rooms: [],
+    username: '',
+    onlineUsers: []
   },
-  
+
   mutations: {
     SOCKET_USER_LOGIN (state, onlineUsers) {
       state.username = localStorage.getItem('username')
@@ -15,12 +17,12 @@ export default new Vuex.Store({
     },
     SOCKET_LIST_ROOMS (state, rooms) {
       state.rooms = rooms
-    },
-    ROOM_LIST (state, rooms) {
-      state.username = '',
-      onlineUsers = [],
-      rooms = []
     }
+    // ROOM_LIST (state, rooms) {
+    //   username = '',
+    //   onlineUsers = [],
+    //   rooms = []
+    // }
   },
   actions: {
     ROOM_LIST (rooms) {

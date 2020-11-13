@@ -28,11 +28,12 @@ export default {
 
   created () {
     this.$socket.emit('getUser')
+    console.log(this.users)
   },
 
   computed: {
     users () {
-      return this.$store.state.onlineUsers || localStorage.getItem('players')
+      return this.$store.state.onlineUsers
     }
   },
   methods: {
