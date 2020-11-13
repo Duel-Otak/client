@@ -3,29 +3,32 @@ import VueRouter from 'vue-router'
 
 Vue.use(VueRouter)
 
-const routes = [
-  {
-    path: '/',
-    name: 'Home',
-    component: () => import('../views/Home.vue'),
-    children: [
-      {
-        path: '',
-        name: 'room',
-        component: () => import('../components/dashboard/Dashboard.vue')
-      },
-      {
-        path: 'rooms/:id',
-        name: 'room',
-        component: () => import('../components/room/Room.vue')
-      }
-    ]
+const routes = [{
+  path: '/',
+  name: 'Home',
+  component: () => import('../views/Home.vue'),
+  children: [{
+    path: '',
+    name: 'rooms',
+    component: () => import('../components/dashboard/Dashboard.vue')
   },
   {
-    path: '/login',
-    name: 'Login',
-    component: () => import('../views/About.vue')
+    path: 'rooms/:id',
+    name: 'room',
+    component: () => import('../components/room/Room.vue')
   }
+  ]
+},
+{
+  path: '/login',
+  name: 'Login',
+  component: () => import('../views/About.vue')
+},
+{
+  path: '/game-over',
+  name: 'Game Over',
+  component: () => import('../components/GameOver.vue')
+}
 ]
 
 const router = new VueRouter({
