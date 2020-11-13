@@ -4,6 +4,9 @@
           <div class="button-center mt-2 mb-2">
               <button @click="backToRoom" class="btn btn-primary">Back To Room</button>
           </div>
+        <div class="image-game-over">
+            <img class="center p-3" src="https://media1.tenor.com/images/95b086d08546be2b72b7dfad7a87634e/tenor.gif?itemid=11264949">
+        </div>
         <div class="table mt-2">
             <table class="table table-sm table-dark text-center">
                 <thead>
@@ -14,31 +17,13 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr class="bg-warning">
-                        <td>1</td>
-                        <td class="bg-primary">Mark</td>
-                        <td class="bg-danger">7</td>
-                    </tr>
-                    <tr class="bg-info">
-                        <td>2</td>
-                        <td class="bg-primary">John</td>
-                        <td class="bg-danger">8</td>
-                    </tr>
-                    <tr class="bg-success">
-                        <td>3</td>
-                        <td class="bg-primary">Jane</td>
-                        <td class="bg-danger">9</td>
-                    </tr>
-                    <tr class="bg-secondary">
-                        <td>4</td>
-                        <td class="bg-primary">Mark</td>
-                        <td class="bg-danger">7</td>
+                    <tr v-for="(player, index) in players" :key="index" class="bg-warning">
+                        <td>{{ index + 1 }}</td>
+                        <td class="bg-primary">{{ player.username }}</td>
+                        <td class="bg-danger">{{ player.correctAnswer }}</td>
                     </tr>
                 </tbody>
             </table>
-        </div>
-        <div class="image-game-over">
-            <img class="center p-3" src="https://media1.tenor.com/images/95b086d08546be2b72b7dfad7a87634e/tenor.gif?itemid=11264949">
         </div>
       </div>
   </div>
@@ -47,9 +32,41 @@
 <script>
 export default {
   name: 'GameOver',
+  data () {
+    return {
+      players: [
+        {
+          username: 'joko',
+          correctAnswer: 5
+        },
+        {
+          username: 'budi',
+          correctAnswer: 8
+        },
+        {
+          username: 'anto',
+          correctAnswer: 7
+        },
+        {
+          username: 'rini',
+          correctAnswer: 6
+        },
+        {
+          username: 'klepon',
+          correctAnswer: 9
+        }
+      ] // ngambil data dari server siapa pemain dan jawabannya
+    }
+  },
   methods: {
     backToRoom () {
       this.$router.push('/')
+    }
+  },
+  sockets: {
+    sendTheWinnerToGameOver (dataPlayer) {
+      this.players = dataPlayer
+      console.log(dataPlayer, 'ini data dari server siapa aja pemainnya')
     }
   }
 }
@@ -63,9 +80,5 @@ export default {
   border-radius: 25%;
   width: 50%;
   height: 50%;
-}
-.btn {
-    margin-left: auto;
-    margin-right: auto;
 }
 </style>
