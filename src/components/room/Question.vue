@@ -33,7 +33,7 @@
       </div>
       <div class="card mcard_3">
         <div class="header l-grey-custom blu">
-            <strong>Cuaca sedang mendung. Ada 5 orang tapi hanya ada 1 payung. Bagaimana caranya agar mereka semua tidak kehujanan?</strong>
+            <strong>{{ randomSoal.soal }}</strong>
         </div>
         <div class="body">
           <!-- <div class="member-img">
@@ -56,8 +56,91 @@
 </template>
 
 <script>
+import Room from '../components/Room'
 export default {
-
+  name: 'gamePage',
+  components: {
+    Background
+  },
+  data() {
+    return {
+      currentSoal: [],
+      randomIndexnya: null,
+      username: localStorage.getItem('name'),
+      score: 0,
+      jumlahSoal: 0,
+      show: true
+    }
+  },
+methods: {
+    getSoals() {
+      this.$store.dispatch('getSoals')
+    },
+    randomIndex() {
+      let indexRandom = Math.floor(Math.random() * this.allSoal.length)
+      this.randomIndexnya = indexRandom
+      this.$socket.emit('randomIndex', indexRandom)
+    },
+    cekJawab(jawaban) {
+      if (jawaban == this.randomSoal.jawab) {
+        this.show = false
+        // console.log("masuk benar");
+        this.score += 1
+      } else if (jawaban !== this.randomSoal.jawab) {
+        this.show = false
+        // console.log("masuk salah");
+        // this.score -= 1;
+      }
+      this.show = true
+      this.randomIndex()
+    }
+  },
+  mounted() {
+    this.getSoals()
+    this.randomIndex()
+    let room = this.$route.params.name
+    this.$socket.on('gameover', (menang) => {
+      this.$router.push(`/winlose`)
+      this.$store.commit('setwinner', menang)
+      this.$store.state.userScore = this.score
+    })
+    this.$socket.on('changeIndex', (index) => {
+      console.log('masuk  mounted')
+      this.randomIndexnya = index
+    })
+  },
+  computed: {
+    allSoal() {
+      return this.$store.state.allSoals
+    },
+    randomSoal() {
+      let i = this.randomIndexnya
+      return this.allSoal[i]
+    },
+    jumlahSoalnya() {
+      return this.jumlahSoal
+    }
+  },
+  watch: {
+    randomSoal(oldVal, newVal) {
+      if (oldVal !== newVal) {
+        this.jumlahSoal += 1
+      }
+    },
+    jumlahSoalnya() {
+      if (this.score == 5) {
+        let objMng = {
+          winner: localStorage.getItem('name'),
+          roomname: this.$route.params.name
+        }
+        this.$socket.emit('adayangmenang', objMng)
+        this.$router.push(`/winlose`)
+        // emit biar menang
+        //  terus store score nya
+        this.$store.state.userScore = this.score
+      }
+    }
+  }
 }
 </script>
 
