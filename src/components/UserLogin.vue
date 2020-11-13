@@ -37,13 +37,14 @@ export default {
   methods: {
     login () {
       localStorage.setItem('username', this.username)
+      this.$socket.emit('userLogin', this.username)
       this.$router.push('/')
     }
   }
 }
 </script>
 
-<style scoped>
+<style scope>
 .buttons {
   display: flex;
   flex-direction: row;

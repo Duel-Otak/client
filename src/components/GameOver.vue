@@ -55,7 +55,7 @@ export default {
 }
 </script>
 
-<style scoped>
+<style scoppe>
 .center {
   display: block;
   margin-left: auto;
