@@ -7,7 +7,9 @@ export default new Vuex.Store({
   state: {
     rooms: [],
     username: '',
-    onlineUsers: []
+    onlineUsers: [],
+    currentRoom: '',
+    soals: []
   },
 
   mutations: {
@@ -17,6 +19,20 @@ export default new Vuex.Store({
     },
     SOCKET_LIST_ROOMS (state, rooms) {
       state.rooms = rooms
+    },
+    SOCKET_LIST_SOAL (state, soal) {
+      state.soals = soal
+    },
+
+    setRoom (state, room) {
+      state.currentRoom = room
+    },
+
+    addPlayerToRoom (state, roomId) {
+      // const indexRoom = state.rooms.filter((room, i) => {
+      //   return i
+      // })
+      // state.rooms[i].players.push({username: localStorage.getItem('username'), isWinner: false})
     }
     // ROOM_LIST (state, rooms) {
     //   username = '',
@@ -29,6 +45,14 @@ export default new Vuex.Store({
       this.sockets.subscribe('ROOM_LIST', (rooms) => {
         console.log(rooms)
       })
+    },
+
+    setCurrentRoom (context, room) {
+      context.commit('setRoom', room)
+    },
+
+    addPlayersToRoom (context, roomid) {
+      context.commit('addPlayerToRoom')
     }
   },
   modules: {

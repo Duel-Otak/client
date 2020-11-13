@@ -1,8 +1,8 @@
 <template>
   <div class="chat_window body">
-    <audio ref="audioElm" autoplay loop  id="playAudio">
+    <!-- <audio ref="audioElm" autoplay loop  id="playAudio">
         <source src="@/assets/bensound-buddy.mp3">
-    </audio>
+    </audio> -->
     <!-- <iframe src="@/assets/bensound-ukulele.mp3" allow="autoplay" style="display:none" id="iframeAudio">
     </iframe> -->
     <div class="chat-header">
@@ -100,10 +100,12 @@ export default {
 
     joinRoom (roomId) {
       console.log(roomId)
-      var a = this.$refs.audioElm
-      if (a.play) {
-        a.pause()
-      }
+      // var a = this.$refs.audioElm
+      // if (a.play) {
+      //   a.pause()
+      // }
+
+      this.$router.push('/rooms/' + roomId)
     }
   }
 }
