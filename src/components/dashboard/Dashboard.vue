@@ -1,18 +1,18 @@
 <template>
   <div id="room">
-    <Player />
+    <User />
     <Question />
   </div>
 </template>
 
 <script>
-import Player from '@/components/dashboard/User.vue'
+import User from '@/components/dashboard/User.vue'
 import Question from '@/components/dashboard/RoomList.vue'
 
 export default {
   name: 'Room',
   components: {
-    Player, Question
+    User, Question
   },
   data () {
     return {}
