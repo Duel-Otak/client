@@ -46,7 +46,8 @@ export default {
 }
 </script>
 
-<style scope>
+<style scoped>
+
 .buttons {
   display: flex;
   flex-direction: row;
