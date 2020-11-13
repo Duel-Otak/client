@@ -19,10 +19,10 @@ export default {
     }
   },
   methods: {
-    createRoom() {
-      let roomname = this.roomname
+    createRoom () {
+      const roomname = this.roomname
       this.$socket.emit('createRoom', roomname)
-      let objCR = {
+      const objCR = {
         roomname: this.roomname,
         name: localStorage.getItem('name')
       }
@@ -30,18 +30,18 @@ export default {
         this.$socket.emit('createRoom', roomname)
       })
     },
-    getAllRoom() {
+    getAllRoom () {
       this.$store.dispatch('getAllRooms')
     }
   },
-  mounted() {
+  mounted () {
     this.getAllRoom()
     this.$socket.on('fetchRoomUlang', () => {
       this.getAllRoom()
     })
   },
   computed: {
-    semuaRoom() {
+    semuaRoom () {
       console.log('list rooms updated', this.$store.state.allRooms)
       return this.$store.state.allRooms
     }

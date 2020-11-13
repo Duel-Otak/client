@@ -56,13 +56,12 @@
 </template>
 
 <script>
-import Room from '../components/Room'
+// import Room from './Room'
 export default {
   name: 'gamePage',
   components: {
-    Background
   },
-  data() {
+  data () {
     return {
       currentSoal: [],
       randomIndexnya: null,
@@ -72,17 +71,17 @@ export default {
       show: true
     }
   },
-methods: {
-    getSoals() {
+  methods: {
+    getSoals () {
       this.$store.dispatch('getSoals')
     },
-    randomIndex() {
-      let indexRandom = Math.floor(Math.random() * this.allSoal.length)
+    randomIndex () {
+      const indexRandom = Math.floor(Math.random() * this.allSoal.length)
       this.randomIndexnya = indexRandom
       this.$socket.emit('randomIndex', indexRandom)
     },
-    cekJawab(jawaban) {
-      if (jawaban == this.randomSoal.jawab) {
+    cekJawab (jawaban) {
+      if (jawaban === this.randomSoal.jawab) {
         this.show = false
         // console.log("masuk benar");
         this.score += 1
@@ -95,12 +94,12 @@ methods: {
       this.randomIndex()
     }
   },
-  mounted() {
+  mounted () {
     this.getSoals()
     this.randomIndex()
-    let room = this.$route.params.name
+    // const room = this.$route.params.name
     this.$socket.on('gameover', (menang) => {
-      this.$router.push(`/winlose`)
+      this.$router.push('/winlose')
       this.$store.commit('setwinner', menang)
       this.$store.state.userScore = this.score
     })
@@ -110,31 +109,31 @@ methods: {
     })
   },
   computed: {
-    allSoal() {
+    allSoal () {
       return this.$store.state.allSoals
     },
-    randomSoal() {
-      let i = this.randomIndexnya
+    randomSoal () {
+      const i = this.randomIndexnya
       return this.allSoal[i]
     },
-    jumlahSoalnya() {
+    jumlahSoalnya () {
       return this.jumlahSoal
     }
   },
   watch: {
-    randomSoal(oldVal, newVal) {
+    randomSoal (oldVal, newVal) {
       if (oldVal !== newVal) {
         this.jumlahSoal += 1
       }
     },
-    jumlahSoalnya() {
-      if (this.score == 5) {
-        let objMng = {
+    jumlahSoalnya () {
+      if (this.score === 5) {
+        const objMng = {
           winner: localStorage.getItem('name'),
           roomname: this.$route.params.name
         }
         this.$socket.emit('adayangmenang', objMng)
-        this.$router.push(`/winlose`)
+        this.$router.push('/winlose')
         // emit biar menang
         //  terus store score nya
         this.$store.state.userScore = this.score
