@@ -7,9 +7,19 @@ export default new Vuex.Store({
   state: {
     rooms: []
   },
+  
   mutations: {
-    ROOM_LIST (rooms) {
-      console.log(rooms)
+    SOCKET_USER_LOGIN (state, onlineUsers) {
+      state.username = localStorage.getItem('username')
+      state.onlineUsers = onlineUsers
+    },
+    SOCKET_LIST_ROOMS (state, rooms) {
+      state.rooms = rooms
+    },
+    ROOM_LIST (state, rooms) {
+      state.username = '',
+      onlineUsers = [],
+      rooms = []
     }
   },
   actions: {

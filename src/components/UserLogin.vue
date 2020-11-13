@@ -39,12 +39,15 @@ export default {
       localStorage.setItem('username', this.username)
       this.$socket.emit('userLogin', this.username)
       this.$router.push('/')
+      this.$socket.emit('userLogin', this.username)
+      this.username = ''
     }
   }
 }
 </script>
 
-<style scope>
+<style scoped>
+
 .buttons {
   display: flex;
   flex-direction: row;
