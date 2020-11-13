@@ -25,7 +25,9 @@ export default {
 
     }
   },
+
   created () {
+    this.$socket.emit('getUser')
   },
 
   computed: {
