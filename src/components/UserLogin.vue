@@ -38,6 +38,8 @@ export default {
     login () {
       localStorage.setItem('username', this.username)
       this.$router.push('/')
+      this.$socket.emit('userLogin', this.username)
+      this.username = ''
     }
   }
 
