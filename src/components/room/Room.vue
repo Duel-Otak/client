@@ -31,7 +31,7 @@ export default {
       })
     },
     getAllRoom () {
-      this.$store.dispatch('getAllRooms')
+      // this.$store.dispatch('getAllRooms')
     }
   },
   mounted () {

@@ -26,14 +26,14 @@
           class="zmdi zmdi-comments"></i></a>
     </div>
     <hr>
-    <!-- Blur Imaage HIlang ketika Start -->
-    <div class="col-lg-12 col-md-12 section-blur">
+    <!-- Blur Imaage HIlang ketika Start section-blur -->
+    <div class="col-lg-12 col-md-12 ">
       <div class="progress m-b-5">
           <div class="progress-bar progress-bar-danger progress-bar-striped" role="progressbar" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100" style="width: 80%"> <span class="sr-only">80% Complete (danger)</span> </div>
       </div>
       <div class="card mcard_3">
-        <div class="header l-grey-custom blu">
-            <strong>{{ randomSoal.soal }}</strong>
+        <div class="header l-cyan">
+            <strong class="text-dark p-2"> {{ soals.soal }}</strong>
         </div>
         <div class="body">
           <!-- <div class="member-img">
@@ -43,10 +43,10 @@
           <hr>
           <div class="row">
             <div class="col-6">
-              <button class="btn btn-success btn-lg" style="width:100%;">Betul</button>
+              <button @click.prevent="answer(true)" class="btn btn-success btn-lg" style="width:100%;">Betul</button>
             </div>
             <div class="col-6">
-              <button class="btn btn-danger btn-lg" style="width:100%;">Salah</button>
+              <button @click.prevent="answer(false)" class="btn btn-danger btn-lg" style="width:100%;">Salah</button>
             </div>
           </div>
         </div>
@@ -68,77 +68,107 @@ export default {
       username: localStorage.getItem('name'),
       score: 0,
       jumlahSoal: 0,
-      show: true
+      show: true,
+      soalKe: 1
     }
   },
+
+  created () {
+    this.getSoal()
+  },
+
   methods: {
-    getSoals () {
-      this.$store.dispatch('getSoals')
+    getSoal () {
+      this.$socket.emit('getSoal', this.username)
     },
-    randomIndex () {
-      const indexRandom = Math.floor(Math.random() * this.allSoal.length)
-      this.randomIndexnya = indexRandom
-      this.$socket.emit('randomIndex', indexRandom)
-    },
-    cekJawab (jawaban) {
-      if (jawaban === this.randomSoal.jawab) {
-        this.show = false
-        // console.log("masuk benar");
-        this.score += 1
-      } else if (jawaban !== this.randomSoal.jawab) {
-        this.show = false
-        // console.log("masuk salah");
-        // this.score -= 1;
+
+    answer (jawaban) {
+      if (this.soalKe > 8) {
+        this.$router.push('/game-over')
+      } else {
+        console.log(jawaban)
+        if (jawaban === this.soals.jawab) {
+          console.log('benar')
+        } else {
+          console.log('jawaban salah')
+        }
       }
-      this.show = true
-      this.randomIndex()
+      this.soalKe++
     }
+
+    // getSoals () {
+    //   this.$store.dispatch('getSoals')
+    // },
+    // randomIndex () {
+    //   const indexRandom = Math.floor(Math.random() * this.allSoal.length)
+    //   this.randomIndexnya = indexRandom
+    //   this.$socket.emit('randomIndex', indexRandom)
+    // },
+    // cekJawab (jawaban) {
+    //   if (jawaban === this.randomSoal.jawab) {
+    //     this.show = false
+    //     // console.log("masuk benar");
+    //     this.score += 1
+    //   } else if (jawaban !== this.randomSoal.jawab) {
+    //     this.show = false
+    //     // console.log("masuk salah");
+    //     // this.score -= 1;
+    //   }
+    //   this.show = true
+    //   this.randomIndex()
+    // }
   },
   mounted () {
-    this.getSoals()
-    this.randomIndex()
-    // const room = this.$route.params.name
-    this.$socket.on('gameover', (menang) => {
-      this.$router.push('/winlose')
-      this.$store.commit('setwinner', menang)
-      this.$store.state.userScore = this.score
-    })
-    this.$socket.on('changeIndex', (index) => {
-      console.log('masuk  mounted')
-      this.randomIndexnya = index
-    })
+    this.$socket.emit('getSoal', this.username)
+    // this.getSoals()
+    // this.randomIndex()
+    // // const room = this.$route.params.name
+    // this.$socket.on('gameover', (menang) => {
+    //   this.$router.push('/winlose')
+    //   this.$store.commit('setwinner', menang)
+    //   this.$store.state.userScore = this.score
+    // })
+    // this.$socket.on('changeIndex', (index) => {
+    //   console.log('masuk  mounted')
+    //   this.randomIndexnya = index
+    // })
   },
   computed: {
-    allSoal () {
-      return this.$store.state.allSoals
-    },
-    randomSoal () {
-      const i = this.randomIndexnya
-      return this.allSoal[i]
-    },
-    jumlahSoalnya () {
-      return this.jumlahSoal
+    soals () {
+      const x = this.$store.state.soals
+      return x[this.soalKe]
     }
+    // allSoal () {
+    //   return this.$store.state.allSoals
+    // },
+    // randomSoal () {
+    //   const i = this.randomIndexnya
+    //   return this.allSoal[i]
+    // },
+    // jumlahSoalnya () {
+    //   return this.jumlahSoal
+    // }
   },
+
   watch: {
-    randomSoal (oldVal, newVal) {
-      if (oldVal !== newVal) {
-        this.jumlahSoal += 1
-      }
-    },
-    jumlahSoalnya () {
-      if (this.score === 5) {
-        const objMng = {
-          winner: localStorage.getItem('name'),
-          roomname: this.$route.params.name
-        }
-        this.$socket.emit('adayangmenang', objMng)
-        this.$router.push('/winlose')
-        // emit biar menang
-        //  terus store score nya
-        this.$store.state.userScore = this.score
-      }
-    }
+    // randomSoal (oldVal, newVal) {
+    //   if (oldVal !== newVal) {
+    //     this.jumlahSoal += 1
+    //   }
+    // },
+    // jumlahSoalnya () {
+    //   if (this.score === 5) {
+    //     const objMng = {
+    //       winner: localStorage.getItem('name'),
+    //       roomname: this.$route.params.name
+    //     }
+    //     this.$socket.emit('adayangmenang', objMng)
+    //     this.$router.push('/winlose')
+    //     // emit biar menang
+    //     //  terus store score nya
+    //     this.$store.state.userScore = this.score
+    //   }
+    // }
   }
 }
 </script>
