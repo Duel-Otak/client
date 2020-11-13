@@ -9,9 +9,9 @@
         </div>
         <div class="row d-flex justify-content-center pt-3" style="text-align: center">
           <div class="card w-50 p-3 border">
-            <input type="text" placeholder="Username">
+            <input v-model="username" type="text" placeholder="Username">
             <hr>
-            <button class="btn effect01 border border-light">
+            <button @click.prevent="login" class="btn effect01 border border-light">
               <span>Play Game</span>
             </button>
           </div>
@@ -28,7 +28,18 @@
 
 <script>
 export default {
-
+  name: 'UserLogin',
+  data () {
+    return {
+      username: ''
+    }
+  },
+  methods: {
+    login () {
+      localStorage.setItem('username', this.username)
+      this.$router.push('/')
+    }
+  }
 }
 </script>
 
