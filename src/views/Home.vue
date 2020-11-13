@@ -11,12 +11,11 @@
               <li class="breadcrumb-item"><a href="#"><i class="zmdi zmdi-home"></i> Home</a></li>
               <li class="breadcrumb-item active">Room</li>
             </ul>
-            <button class="btn btn-primary btn-icon mobile_menu" type="button"><i
-                class="zmdi zmdi-sort-amount-desc"></i></button>
+            <button class="btn btn-danger btn-icon mobile_menu" type="button"><i class="zmdi zmdi-power"></i></button>
+
           </div>
           <div class="col-lg-5 col-md-6 col-sm-12">
-            <button class="btn btn-primary btn-icon float-right right_icon_toggle_btn" type="button"><i
-                class="zmdi zmdi-arrow-right"></i></button>
+                <button class="btn btn-danger btn-icon float-right" type="button"><i class="zmdi zmdi-power"></i></button>
           </div>
         </div>
       </div>
